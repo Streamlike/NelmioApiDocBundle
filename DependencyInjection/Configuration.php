@@ -18,9 +18,16 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $treeBuilder
-            ->root('nelmio_api_doc')
+        $treeBuilder = new TreeBuilder('nelmio_api_doc');
+
+        // For compatibility with older versions
+        if (method_exists($treeBuilder, 'getRootNode')) {
+            $rootNode = $treeBuilder->getRootNode();
+        } else {
+            $rootNode = $treeBuilder->root('nelmio_api_doc');
+        }
+
+        $rootNode
             ->children()
                 ->scalarNode('name')->defaultValue('API documentation')->end()
                 ->arrayNode('exclude_sections')
