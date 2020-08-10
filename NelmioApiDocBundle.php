@@ -8,7 +8,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Nelmio\ApiDocBundle\DependencyInjection\LoadExtractorParsersPass;
 use Nelmio\ApiDocBundle\DependencyInjection\RegisterExtractorParsersPass;
-use Nelmio\ApiDocBundle\DependencyInjection\ExtractorHandlerCompilerPass;
 
 class NelmioApiDocBundle extends Bundle
 {
@@ -18,7 +17,6 @@ class NelmioApiDocBundle extends Bundle
 
         $container->addCompilerPass(new LoadExtractorParsersPass());
         $container->addCompilerPass(new RegisterExtractorParsersPass());
-        $container->addCompilerPass(new ExtractorHandlerCompilerPass());
         $container->addCompilerPass(new AnnotationsProviderCompilerPass());
         $container->addCompilerPass(new SwaggerConfigCompilerPass());
     }
